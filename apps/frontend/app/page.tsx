@@ -1,102 +1,144 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Terminal } from "lucide-react";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const handleGetStarted = () => {
+    // TODO: Implement Clerk authentication
+    console.log("Redirecting to sign-in...");
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-indigo-950 to-zinc-900">
+      {/* Top Bar */}
+      <nav className="fixed w-full backdrop-blur-md bg-black/20 border-b border-white/10 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Terminal className="h-6 w-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded" />
+              <span className="ml-2 text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Entangle CLI
+              </span>
+            </div>
+          <div className="flex gap-4">
+          <Button
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg shadow-purple-500/25"
+            >
+              <SignInButton/>
+            </Button>
+            <Button
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg shadow-purple-500/25"
+            >
+              <SignUpButton/>
+            </Button>
+          </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="px-6 pt-32 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl font-bold tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent sm:text-6xl"
+            >
+              Automate Your Workflow with Entangle CLI
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-10 space-y-8 text-lg text-zinc-300"
+            >
+              <p className="bg-gradient-to-r from-zinc-100 to-zinc-300 bg-clip-text text-transparent">
+                Entangle CLI is your command-line companion for modern development workflows. 
+                Built for developers who value efficiency and automation, it streamlines your 
+                development process from start to finish.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div className="p-6 rounded-lg bg-gradient-to-br from-purple-900/50 to-indigo-900/50 backdrop-blur-sm border border-purple-500/20">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                    Automated Workflows
+                  </h3>
+                  <p className="text-sm text-zinc-300">Create and manage automated workflows with simple commands</p>
+                </div>
+                <div className="p-6 rounded-lg bg-gradient-to-br from-pink-900/50 to-purple-900/50 backdrop-blur-sm border border-pink-500/20">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    Smart Integration
+                  </h3>
+                  <p className="text-sm text-zinc-300">Seamlessly integrate with your existing development tools</p>
+                </div>
+                <div className="p-6 rounded-lg bg-gradient-to-br from-indigo-900/50 to-purple-900/50 backdrop-blur-sm border border-indigo-500/20">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    Real-time Monitoring
+                  </h3>
+                  <p className="text-sm text-zinc-300">Monitor your workflows and get instant feedback</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-b from-transparent via-black/50 to-black/80 py-12 mt-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                About Entangle
+              </h3>
+              <p className="text-zinc-300">Empowering developers with automated workflows and efficient development tools.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent mb-4">
+                Quick Links
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">Documentation</a>
+                </li>
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">Tutorials</a>
+                </li>
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">Blog</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-4">
+                Connect
+              </h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">GitHub</a>
+                </li>
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">Twitter</a>
+                </li>
+                <li>
+                  <a href="#" className="text-zinc-300 hover:text-white transition-colors">Discord</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <p className="text-center text-zinc-400">&copy; {new Date().getFullYear()} Entangle CLI. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
