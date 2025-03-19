@@ -1,13 +1,21 @@
 {
   "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "vercel dev",
-    "deploy": "vercel"
-  },
-  "dependencies": {
-    "hono": "^4.7.4"
+    "dev": "bun run index.ts"
   },
   "devDependencies": {
-    "vercel": "^32.4.1"
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
   }
 }
